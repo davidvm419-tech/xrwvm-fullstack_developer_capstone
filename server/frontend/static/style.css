@@ -124,3 +124,23 @@ img{
     text-align:center;
     box-shadow: 2px 2px 3px #999;  
 }
+
+/*Contact hhtml style*/
+
+.card-body-contact {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.card-body-contact .contact-info {
+    text-align: center;
+    width: 50%;
+}
+
+.card-body-contact img {
+    width: 40%;
+    object-fit: contain;
+}
+
