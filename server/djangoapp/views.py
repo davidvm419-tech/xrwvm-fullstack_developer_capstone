@@ -59,6 +59,32 @@ def registration(request):
         last_name = data["lastName"]
         email = data["email"]
     
+        # Check if user already exists
+        user_exists = User.objects.filter(username=user_name).exists()
+
+        if user_exists:
+            data = {
+                "userName": user_name,
+                "error": "Already Registered"}
+            return JsonResponse(data)
+        
+        # Create user and save it to database
+        user = User.objects.create_user(
+            username=user_name,
+            password=password,
+            first_name=first_name,
+            last_name=last_name,
+            email=email,
+            )
+        # Login user
+        login(request, user)
+
+        # Return response
+        data = {
+            "userName": user_name,
+            "status":"Authenticated",
+            }
+        return JsonResponse(data) 
 
 
 # # Update the `get_dealerships` view to render the index page with
