@@ -29,7 +29,10 @@ urlpatterns = [
     path('login/', TemplateView.as_view(template_name="index.html")),
     # Register path to react
     path('register/', TemplateView.as_view(template_name="index.html")),
-
-
+    # dealers path to react
+    path('dealers/', TemplateView.as_view(template_name="index.html")),
+    path('dealer/<int:dealer_id>',TemplateView.as_view(template_name="index.html")),
+    # Post review path to react
+    path('postreview/<int:dealer_id>',TemplateView.as_view(template_name="index.html")),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
