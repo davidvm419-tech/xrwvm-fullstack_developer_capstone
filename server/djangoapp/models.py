@@ -17,11 +17,16 @@ class CarMake(models.Model):
 
 
 # <HINT> Create a Car Model model `class CarModel(models.Model):`:
-# - Many-To-One relationship to Car Make model (One Car Make has many
-# Car Models, using ForeignKey field)
-# - Name
-# - Type (CharField with a choices argument to provide limited choices
-# such as Sedan, SUV, WAGON, etc.)
-# - Year (IntegerField) with min value 2015 and max value 2023
-# - Any other fields you would like to include in car model
+class CarModel(models.Model):
+    maker = models.ForeignKey(CarMake, on_delete=models.CASCADE)
+    MODELS = [
+        ("SEDAN", "Sedan"),
+        ("SUV", "SUV"),
+        ("WAGON", "Wagon"),
+        ]
+    name = models.CharField(max_length=100, choices=MODELS, default="SUV")
+    year = models.IntegerField(default=2023, validators=[MinValueValidator(2015), MaxValueValidator(2023)])
+
+    def __str__(self):
+        return self.name
 # - __str__ method to print a car make object
