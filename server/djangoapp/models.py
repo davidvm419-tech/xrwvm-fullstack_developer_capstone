@@ -18,15 +18,16 @@ class CarMake(models.Model):
 
 # <HINT> Create a Car Model model `class CarModel(models.Model):`:
 class CarModel(models.Model):
-    maker = models.ForeignKey(CarMake, on_delete=models.CASCADE)
-    MODELS = [
+    car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    CAR_TYPES = [
         ("SEDAN", "Sedan"),
         ("SUV", "SUV"),
         ("WAGON", "Wagon"),
         ]
-    name = models.CharField(max_length=100, choices=MODELS, default="SUV")
+    type = models.CharField(max_length=100, choices=CAR_TYPES, default="SUV")
     year = models.IntegerField(default=2023, validators=[MinValueValidator(2015), MaxValueValidator(2023)])
 
+    # - __str__ method to print a car make object
     def __str__(self):
         return self.name
-# - __str__ method to print a car make object
